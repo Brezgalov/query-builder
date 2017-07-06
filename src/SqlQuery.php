@@ -3,7 +3,7 @@ namespace BrezgalovQueryBuilder;
 
 use Exceptions\UnexpectedStatmentException;
 
-class Statement {
+class SqlQuery {
 	private $query;
 	private $queryTail;
 
