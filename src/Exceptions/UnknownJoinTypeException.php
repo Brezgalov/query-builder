@@ -1,7 +1,7 @@
 <?php 
 namespace BrezgalovQueryBuilder\Exceptions;
 
-class UnknownTypeException extends Exception {
+class UnknownTypeException extends \Exception {
 	public function __construct(
 		$message = 'Specified type is unknown!';
 		$code = 0, 

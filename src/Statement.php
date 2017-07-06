@@ -1,13 +1,9 @@
 <?php 
 namespace BrezgalovQueryBuilder;
 
-use Traits\KnowJoinTypes;
 use Exceptions\UnexpectedStatmentException;
 
 class Statement {
-	use KnowJoinTypes;
-	use KnowOrderTypes;
-
 	private $query;
 	private $queryTail;
 
@@ -51,6 +47,7 @@ class Statement {
 		$this->joinQuery = '';
 		$this->queryTail = '';
 		$this->select = true;
+		return $this;
 	}
 
 	public function from($fromStatement) {
@@ -60,16 +57,18 @@ class Statement {
 
 		$this->query .= ' FROM '.$fromStatement;
 		$this->from = true;
+		return $this;
 	}
 
-	public function where($statement, $or) {
+	public function where($statement, $or = false) {
 		// $this-validateSelectAndFrom('WHERE');
 
 		$wherePrefix = ' WHERE ';
 		if ($this->where) {
-			$wherePrefix = ()? ' OR ' : ' AND ';
+			$wherePrefix = ($or)? ' OR ' : ' AND ';
 		}
 		$this->whereQuery .= $wherePrefix . $statement;
+		return $this;
 	}
 
 	public function join($statement, $type = '') {
@@ -77,6 +76,7 @@ class Statement {
 		// if ($this->where)
 		
 		$this->joinQuery .= ' ' . $type . ' JOIN ' . $statement;
+		return $this;
 	}
 
 	public function groupBy($statement) {
@@ -87,6 +87,7 @@ class Statement {
 
 		$this->queryTail .= ' GROUP BY '.$statement;
 		$this->groupBy = true;
+		return $this;
 	}
 
 	public function orderBy($statement, $type) {
@@ -97,10 +98,12 @@ class Statement {
 
 		$this->queryTail .= 'ORDER BY ' . $statement . ' ' . $type;
 		$this->orderBy = true;
+		return $this;
 	}
 
 	public function limit($limit, $offset) {
 		// $this-validateSelectAndFrom();
 		$this->queryTail .= 'LIMIT ' . $offset . ',' . $limit;
+		return $this;
 	}
 }
