@@ -43,4 +43,8 @@ class Statement {
 		}
 		return implode(' ', $build);
 	}
+
+	public function isEmpty() {
+		return !(count($this->conditions) > 1 || $this->conditions['default'] != '');
+	}
 }
