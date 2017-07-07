@@ -31,17 +31,14 @@ class Statement {
 	}
 
 	public function build($format) {
-		$parts = explode(' ', $format);
+		$parts = explode('$', $format);
 		$build = [];
 		while (!empty($parts)) {
 			$next = array_shift($parts);
-			if ($next[0] == '$') {
-				str_replace($next, '$', '');
-				if (isset($this->conditions['$next'])) {
-					array_push($build, $this->conditions['$next']);
-					continue;
-				}
-			} 
+			if (isset($this->conditions[$next])) {
+				array_push($build, $this->conditions[$next]);
+				continue;
+			}
 			array_push($build, $next);
 		}
 		return implode(' ', $build);
