@@ -1,7 +1,7 @@
 <?php 
 namespace BrezgalovQueryBuilder;
 
-use Exceptions\UnexpectedStatmentException;
+use Exceptions\UnexpectedStatementException;
 
 class SqlQuery {
 	private $query;
@@ -106,8 +106,9 @@ class SqlQuery {
 	public function insertFrom($to, $fields, $from) {
 		$this->query = 'INSERT INTO ' . $to;
 		if (!empty($fields)) {
-			$this->query .= '( ' . implode(',', $fields) . ')';
+			$this->query .= '(' . implode(',', $fields) . ')';
 		}
-		$this->query .= $from;
+		$this->query .= ' FROM (' . $from . ')';
+		return $this;
 	}
 }

@@ -1,7 +1,7 @@
 <?php 
 namespace BrezgalovQueryBuilder\Exceptions;
 
-class UnexpectedStatmentException extends \Exception {
+class UnexpectedStatementException extends \Exception {
 	public function __construct(
 		$message = 'Specified statment order is not supported!',
 		$code = 0, 
