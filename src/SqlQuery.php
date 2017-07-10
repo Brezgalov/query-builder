@@ -38,7 +38,7 @@ class SqlQuery {
 	}
 
 	public static function prepareIn($field, $values) {
-		return $field . ' IN (' . implode(', ', $values) .')';
+		return $field . " IN ('" . implode("', '", $values) ."')";
 	}
 
 	public function getSql() {
@@ -74,12 +74,13 @@ class SqlQuery {
 			$wherePrefix = ($or)? ' OR ' : ' AND ';
 		}
 		$this->whereQuery .= $wherePrefix . $statement;
+		$this->where = true;
 		return $this;
 	}
 
 	public function whereIn($field, $values, $or = false) {
-		$statement = $field . ' IN (' . implode(', ', $values) .')';
-		$this->where($statement, $or);
+		$statement = self::prepareIn($field, $values);
+		return $this->where($statement, $or);
 	}
 
 	public function join($statement, $type = '') {
@@ -108,7 +109,7 @@ class SqlQuery {
 		$this->clear();
 		$this->query = 'INSERT INTO ' . $to;
 		if (!empty($fields)) {
-			$this->query .= '(' . implode(',', $fields) . ')';
+			$this->query .= ' (' . implode(',', $fields) . ')';
 		}
 		$this->query .= ' VALUES ';
 		$valuesStrings = [];
@@ -118,7 +119,7 @@ class SqlQuery {
 			}
 			array_push(
 				$valuesStrings, 
-				'(' . implode(',', $value) . ')'
+				"('" . implode("', '", $value) . "')"
 			);
 		}
 		$this->query .= implode(',', $valuesStrings);
@@ -149,12 +150,14 @@ class SqlQuery {
 		if ($where) {
 			$this->query .= ' WHERE ' . $where;
 		}
+		$this->update = true;
 		return $this;
 	}
 
 	public function delete($fromTable, $where) {
 		$this->clear();
 		$this->query = 'DELETE FROM ' . $fromTable . ' WHERE ' . $where;
+		$this->delete = true;
 		return $this;
 	}
 }
