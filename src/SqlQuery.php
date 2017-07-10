@@ -93,6 +93,9 @@ class SqlQuery {
 		$this->query .= ' VALUES ';
 		$valuesStrings = [];
 		foreach ($values as $value) {
+			if (!is_array($value)) {
+				throw new \InvalidArgumentException('Values expected to be an array of arrays');
+			}
 			array_push(
 				$valuesStrings, 
 				'(' . implode(',', $value) . ')'
