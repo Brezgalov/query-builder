@@ -1,7 +1,10 @@
 {
     "name": "brezgalov/query-builder",
     "description": "This is a simple tool I made for myself to help with building complex sql select queries",
+    "keywords": ["sql", "query"],
+    "homepage": "https://github.com/Brezgalov/query-builder",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Oleg Brezgalov",
@@ -11,10 +14,7 @@
     "require": {
         "php": ">=5.3.0"
     },
-    "minimum-stability": "dev",
     "autoload": {
-        "psr-0": {
-            "BrezgalovQueryBuilder": "src/"
-        }
+        "psr-0": { "BrezgalovQueryBuilder": "src/" }
     }
 }
