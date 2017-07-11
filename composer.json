@@ -5,6 +5,7 @@
     "homepage": "https://github.com/Brezgalov/query-builder",
     "type": "library",
     "license": "MIT",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Oleg Brezgalov",
