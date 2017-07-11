@@ -142,10 +142,10 @@ class SqlQuery {
 		$this->query = 'UPDATE ' . $table . ' SET ';
 		$keys = array_keys($values);
 		$first = array_shift($keys);
-		$this->query .= "`" . $first . "` = '" . ((string)$values[$first]) . "'";
+		$this->query .=  $first . " = '" . ((string)$values[$first]) . "'";
 		while (!empty($keys)) {
 			$next = array_shift($keys);
-			$this->query .= ", `" . $next . "` = '" . ((string)$values[$next]) . "'";
+			$this->query .= ", " . $next . " = '" . ((string)$values[$next]) . "'";
 		}
 		if ($where) {
 			$this->query .= ' WHERE ' . $where;
