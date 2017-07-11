@@ -1,0 +1,19 @@
+{
+    "name": "brezgalov/query-builder",
+    "description": "This is a simple tool I made for myself to help with building complex sql select queries",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Oleg Brezgalov",
+            "email": "oleg.brezgalov@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+    "psr-0": {
+        "BrezgalovQueryBuilder": "src/"
+    }
+    
+}
